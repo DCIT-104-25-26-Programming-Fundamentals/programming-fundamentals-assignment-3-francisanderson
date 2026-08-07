@@ -54,9 +54,101 @@
 // - Each part must be in its own function (see scaffold below).
 // - Complete Part A before attempting Part B.
 
-//
+
 // =============================================================================
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const readlineSync = require("readline-sync");
 
+
+// Part A — Single multiplication table
+function singleTable() {
+    const input = readlineSync.question("Enter a number: ").trim();
+
+    // Validate the input
+    if (!/^\d+$/.test(input)) {
+        console.log("Error: Number must be a positive integer.");
+        return false;
+    }
+
+    const number = Number(input);
+
+    if (number <= 0) {
+        console.log("Error: Number must be a positive integer.");
+        return false;
+    }
+
+    console.log();
+    console.log(`Multiplication Table for ${number}:`);
+
+    // Generate the multiplication table from 1 to 12
+    for (let i = 1; i <= 12; i++) {
+        console.log(`${number}  x  ${i}  =  ${number * i}`);
+    }
+
+    return true;
+}
+
+
+// Part B — Multiplication tables from 1 to N
+function tablesFromOneToN() {
+    const input = readlineSync.question("Enter a number N: ").trim();
+
+    // Validate the input
+    if (!/^\d+$/.test(input)) {
+        console.log("Error: N must be a positive integer.");
+        return false;
+    }
+
+    const n = Number(input);
+
+    if (n <= 0) {
+        console.log("Error: N must be a positive integer.");
+        return false;
+    }
+
+    console.log();
+
+    // Generate tables from 1 to N
+    for (let number = 1; number <= n; number++) {
+        console.log(`Multiplication Table for ${number}:`);
+
+        // Generate each table from 1 to 12
+        for (let i = 1; i <= 12; i++) {
+            console.log(`${number}  x  ${i}  =  ${number * i}`);
+        }
+
+        // Add a separator between tables
+        if (number < n) {
+            console.log("---------------------------");
+        }
+    }
+
+    return true;
+}
+
+
+// Main function
+function main() {
+    // Complete Part A first
+    const partACompleted = singleTable();
+
+    // Stop if Part A receives invalid input
+    if (!partACompleted) {
+        return;
+    }
+
+    console.log();
+
+    // Complete Part B after Part A
+    const partBCompleted = tablesFromOneToN();
+
+    // Stop if Part B receives invalid input
+    if (!partBCompleted) {
+        return;
+    }
+}
+
+
+main();
